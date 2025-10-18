@@ -1,0 +1,19 @@
+@import "tailwindcss";
+
+@variant dark (&:where(.dark, .dark *));
+
+@layer base {
+    * {
+      transition-property: background-color, border-color, color, fill, stroke;
+      transition-duration: 200ms;
+      transition-timing-function: ease-in-out;
+    }
+
+    html, body {
+        @apply bg-white dark:bg-gray-900;
+    }
+  }
+
+*{
+    box-sizing: border-box;
+}
