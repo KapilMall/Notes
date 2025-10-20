@@ -4,24 +4,23 @@ import { Button } from "./Basic components/Button"
 import type { Note } from "../Types"
 import { useAppDispatch, useAppSelector } from "../Hooks/reduxHooks"
 import { addNote, deleteNote, editNote } from "../Slices/notesSlice"
-import type { NoteDetailsHandle } from "./NoteDetails"
 import { ImageUpload } from "./ImageUplaod"
 
 interface MenuBarProps {
     handleNotes?: (note: Note) => void,
     handleDelete?: (id: number) => void,
     selectedNoteId?: number | null,
-    noteDetailRef: React.RefObject<NoteDetailsHandle | null>
+    editableDivRef: React.RefObject<HTMLDivElement | null>
  }
 
-export const MenuBar: React.FC<MenuBarProps> = ({ noteDetailRef }) => {
+export const MenuBar: React.FC<MenuBarProps> = ({ editableDivRef }) => {
 
     const dispatch = useAppDispatch();
     const { selectedNoteId } = useAppSelector((state) => state.notes)
 
     const handleCheckbox = () => {
         // Simply call the insertCheckbox method
-        noteDetailRef.current?.insertCheckbox();
+        // editableDivRef.current?.insertCheckbox();
     }
     return (
         <div className="flex items-center bg-gray-100 dark:bg-gray-800 px-[15px] gap-[13px]">
@@ -60,7 +59,7 @@ export const MenuBar: React.FC<MenuBarProps> = ({ noteDetailRef }) => {
 
                     {/* add Image or file icon */}
 
-                    <ImageUpload />
+                    <ImageUpload editableDivRef = {editableDivRef}/>
 
                 </div>
 

@@ -4,8 +4,8 @@ import "./index.css";
 import { ToastContainer } from "react-toastify";
 import { MenuBar } from "./Components/MenuBar";
 import { NotesList } from "./Components/NotesList";
-import { NoteDetail, type NoteDetailsHandle } from "./Components/NoteDetails";
 import { useRef } from "react";
+import { NoteDetail } from "./Components/NoteDetail";
 // import type { Note } from "./Types";
 
 function App() {
@@ -18,7 +18,7 @@ function App() {
   // Doing this for toggle/add checkbox feature
 
   // This is ref to the noteDetail component itself not the textara in it
-  const noteDetailRef = useRef<NoteDetailsHandle>(null);
+   const editableDivRef = useRef<HTMLDivElement>(null);
 
   // notes and selectedNoteId state in case of local storage
 
@@ -126,7 +126,7 @@ function App() {
         // handleNotes = {handleNotes}
         // handleDelete = {handleDelete}
         // selectedNoteId = {selectedNoteId}
-        noteDetailRef = {noteDetailRef}
+        editableDivRef = {editableDivRef}
       />
       {/* <TaskDescription  handleNotes = {handleNotes} />
       <ListTasks notes = {notes} handleDelete = {handleDelete} handelEditNote = {handelEditNote}/> */}
@@ -148,7 +148,7 @@ function App() {
           // note = {selectedNote}
           // textareaRef = {noteDetailTextAreaRef}
           // onUpdateNote = {handelEditNote}
-          ref = {noteDetailRef}
+          editableDivRef={editableDivRef}
         />
       </div>
 

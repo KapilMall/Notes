@@ -12,7 +12,7 @@ export interface NoteDetailsHandle {
     insertCheckbox: () => void;
 }
 
-export const NoteDetail = forwardRef<NoteDetailsHandle, NoteDetailProps>((props, ref) => {
+export const NoteDetails = forwardRef<NoteDetailsHandle, NoteDetailProps>((props, ref) => {
 
     const [content, setContent] = useState('');
     const prevNoteIdRef = useRef<number | null>(null);
@@ -311,5 +311,3 @@ export const NoteDetail = forwardRef<NoteDetailsHandle, NoteDetailProps>((props,
         </div>
     )
 });
-
-NoteDetail.displayName = 'NoteDetail';

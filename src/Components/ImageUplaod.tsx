@@ -1,9 +1,13 @@
 import { Images } from "lucide-react"
 import { useImageUplaod } from "../Hooks/useImageUplaod"
 
-export const ImageUpload = () => {
+interface ImageUploadProps {
+    editableDivRef: React.RefObject<HTMLDivElement | null>
+}
 
-    const { handleImageUpload } = useImageUplaod();
+export const ImageUpload:React.FC<ImageUploadProps> = ({editableDivRef}) => {
+
+    const { handleImageUpload } = useImageUplaod(editableDivRef);
     const handleChange = (e: any) => {
         if(e.target.files && e.target.files.length > 0)
             handleImageUpload(e.target.files)
