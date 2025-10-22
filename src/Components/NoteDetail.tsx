@@ -36,6 +36,15 @@ export const NoteDetail:React.FC<NoteDetailProps>  = ({ editableDivRef }) => {
         }
     }, [selectedNote?.id]);
 
+    
+    if(!selectedNote) {
+         return (
+            <div className="flex flex-1 items-center justify-center overflow-y-auto">
+                <h1 className="text-gray-900 dark:text-white">Select a note to View</h1>
+            </div>
+        )
+    }
+
     return (
         <>
         <div
