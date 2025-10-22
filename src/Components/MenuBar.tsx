@@ -25,7 +25,7 @@ export const MenuBar: React.FC<MenuBarProps> = ({ editableDivRef }) => {
     return (
         <div className="flex items-center bg-gray-100 dark:bg-gray-800 px-[15px] gap-[13px]">
 
-            <div className="flex justify-between items-center w-[24%] py-[5px]">
+            <div className="flex justify-between items-center w-[24.5%] py-[5px]">
 
                 <div className="flex items-center gap-[20px]">
                     {/* Logo  */}

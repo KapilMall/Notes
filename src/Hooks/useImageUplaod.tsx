@@ -12,13 +12,10 @@ interface ImageType {
 }
 
 export const useImageUplaod = (editorRef: React.RefObject<HTMLDivElement | null>) => {
-    console.log('ref: ', editorRef);
     const [images, setImages] = useState<ImageType[]>([]);
     const dispatch = useAppDispatch();
     const { selectedNoteId, notes } = useAppSelector((state) => state.notes);
     const selectedNote = notes.find((note) => note.id === selectedNoteId)
-
-    console.log('images: ', images);
 
     const handleImageUpload = (files: FileList)=> {
         if(!files || !selectedNote) return;
@@ -34,9 +31,9 @@ export const useImageUplaod = (editorRef: React.RefObject<HTMLDivElement | null>
 
                 const img = document.createElement('img');
                 img.src = event.target?.result as string;
-                img.style.maxWidth = "100%";
-                img.style.height = "auto";
-                img.style.display = "block";
+                img.style.maxWidth = "500px";
+                img.style.height = "300px"
+                img.style.display = "inline";
                 img.style.margin = "10px 0";
 
                 // Insert image into the editor

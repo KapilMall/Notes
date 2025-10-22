@@ -82,7 +82,7 @@ function App() {
   //Get heading from the textarea, we will consider first line as heading
 
   const getHeading = (content: string) => {
-    const firstLine = content.split('\n')[0];
+    const firstLine = content.split('<div>')[0];
     const hasCheckBox = firstLine.includes('[ ] ') || firstLine.includes('[x] ');
 
     if (hasCheckBox) {
@@ -96,8 +96,29 @@ function App() {
   //Get description from the textarea, Consider everything after the first line as description
 
   const getDescription = (content: string) => {
-    const lines = content.split('\n');
-    const description = lines.map((line) => {
+    const lines = content.split('<div>');
+    //removing </div> tag from each array elements
+    const linesAfterRemovingDiv = lines.map((line) => {
+      if(line.includes('</div>')) {
+        return line.substring(0, line.indexOf('</div>'))
+      } else {
+        return line;
+      }
+
+    });
+
+    //removing <br> and &nbsp; tag from the array
+    const finalLines = 
+      linesAfterRemovingDiv.filter((line) => line !== "<br>" )
+        .map((line) => {
+          if(line.includes('</div>')) {
+            return line.substring(0, line.indexOf('&nbsp;'))
+          } else {
+             return line;
+          }
+        });
+
+    const description = finalLines.map((line) => {
       const hascheckBox = line.includes('[ ] ') || line.includes('[x] ');
       if(hascheckBox) {
         return line.slice(4);
@@ -120,7 +141,7 @@ function App() {
 
       {/* divider  */}
 
-      <div className="w-[1px] h-[100%] dark:bg-white bg-gray-900 mx-[10px] absolute left-[24.3%]"></div>
+      <div className="w-[1px] h-[100%;] dark:bg-white bg-gray-900 mx-[10px] absolute left-[24.3%]"></div>
 
       <MenuBar 
         // handleNotes = {handleNotes}
@@ -142,6 +163,10 @@ function App() {
           // setSelectedNoteId = {setSelectedNoteId}
         />
 
+        {/* Horizontal line between these two components  */}
+
+        <div className="absolute w-[1px] h-[100vh] bg-white dark:bg-balck left-[25%] top-0"/>
+
         {/* Notes Details  */
         }
         <NoteDetail 
@@ -162,3 +187,16 @@ function App() {
 }
 
 export default App
+
+{/*
+const lines = content
+    .split(/<div>/gi)  // Split by <div> tags
+    .map(line => 
+        line
+            .replace(/<[^>]*>/g, '')      // Remove all HTML tags
+            .replace(/&nbsp;/g, ' ')       // Replace &nbsp; with space
+            .replace(/&[a-z]+;/gi, '')     // Remove other HTML entities (optional)
+            .trim()                        // Remove extra whitespace
+    )
+    .filter(line => line.length > 0);     // Remove empty lines
+  */}

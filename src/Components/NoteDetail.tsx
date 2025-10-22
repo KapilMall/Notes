@@ -42,8 +42,17 @@ export const NoteDetail:React.FC<NoteDetailProps>  = ({ editableDivRef }) => {
             ref = {editableDivRef}
             contentEditable
             onInput={handleInput}
-            className="bg-red w-full flex-1 text-gray-900 dark:text-white outline-0 px-[10px] py-[15px]"
+            className="editable-div bg-red w-full flex-1 text-gray-900 dark:text-white outline-0 px-[10px] py-[15px]"
         />
+        <style>{
+        `
+            .editable-div::first-line {
+                font-size: 1.8em;
+                font-weight: bold;
+            }
+        `    
+        }
+        </style>
         </>
     )
 }
